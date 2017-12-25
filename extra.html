@@ -1,0 +1,202 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no,minimal-ui ">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>阳光之道</title>
+
+</head>
+
+<link type="text/css" rel="stylesheet" href="css/main.css">
+<link type="text/css" rel="stylesheet" href="css/extra.css">
+<script src="js/main.js"></script>
+<script src="js/extra.js"></script>
+
+<body style="overflow: hidden;background-color: #373b3b">
+<div id="root" style="width: 100%;height: 100%;overflow: hidden;">
+     <!--Loading -->
+    <!--<div id="loading_page" class="page_full">-->
+        <!--<img id="bg" src="resource/bg.png" width="100%" height="100%" />-->
+        <!--<div class="loading_head">-->
+            <!--<img id="logo" src="resource/logo_s1.png" />-->
+        <!--</div>-->
+        <!--<div class="loading_foot">-->
+            <!--<div style="margin-bottom: -25px;margin-left: 20px;"><canvas id="cv"></canvas></div>-->
+            <!--<img id="stage" src="resource/stage.png"   />-->
+        <!--</div>-->
+    <!--</div>-->
+    <!-- 第二页 -->
+    <!--<div  id="start_page" style="display: none;" class="page_full">-->
+        <!--<img id="bg2" src="resource/bg2.png" width="100%" height="100%" />-->
+        <!--<div class="start_head">-->
+            <!--<img id="logo_start" src="resource/logo_start_s9.png"   />-->
+        <!--</div>-->
+        <!--<div class="start_foot" >-->
+            <!--<div style="margin-bottom: 48px"><img id="go_btn" src="resource/go.png" /></div>-->
+            <!--<div style="margin-right: 30px"><img id="logo_bottom" src="resource/logo_bottom.png" /></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <style>
+        .box{ width:100%;height:100%;text-align:center;}
+        span{ display:inline-block; height:100%; vertical-align:middle;}
+        .imgCSS{ vertical-align:middle;}
+        .btn-ani{
+            animation: start_n 1.5s  ease-in-out;
+        }
+        @-webkit-keyframes start_n {
+            0%, 30% {
+                opacity: 0;
+                -webkit-transform: translateY(30px)
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translate(0)
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translateY(0px)
+            }
+        }
+
+        @keyframes start_n {
+            0%, 30% {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+            100% {
+                opacity: 1;
+                transform: translate(0)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0px)
+            }
+        }
+    </style>
+    <script>
+        $(window).resize(function() {
+            setTimeout(function () {
+                checkLand()
+            },300)
+
+        });
+
+        function checkLand() {
+            var w = $(window).width();
+            var h = $(window).height();
+            if(h>w){
+                $("#landAlert,#landAlert1").show();
+                $("#go_btn,#replay_btn").hide().removeClass("btn-ani");
+                return false;
+            }else{
+                $("#landAlert,#landAlert1").hide();
+                $("#go_btn,#replay_btn").show().addClass("btn-ani");
+                return true;
+            }
+        }
+        $(function () {
+            setTimeout(function () {
+                checkLand()
+                $("#loadingGif").hide();
+                $("#waitArea").show();
+                $("#video").show().click(function () {
+                    $("#waitArea").fadeOut("slow")
+//                    $(this).css("opacity",1).get(0).play();
+                });
+            },2000)
+        })
+    </script>
+    <div class="box" id="start_page">
+        <div id="waitArea" style="display:none;position: absolute;width: 100%;left: 0px;top: 37%;z-index: 888">
+            <div id="landAlert" style="display: none">
+                <img src="resource/alert.png" width="200px">
+            </div>
+            <div>
+                <img id="go_btn" src="resource/start.png" width="150px;" style="margin-top: 50px;">
+            </div>
+        </div>
+
+        <img id="loadingGif" class="imgCSS" src="resource/loading.gif" width="50px" height="50px"><span></span>
+    </div>
+    <!-- 视频 -->
+    <div id="pageWrap" style="overflow: hidden; display: none;">
+        <video id="video" preload="auto" data-index="1" x-webkit-airplay="" playsinline="" webkit-playsinline=""
+               x5-video-player-fullscreen="true" x5-video-orientation="landscape" x5-video-player-type="h5"
+               width="100%" height="100%" poster="" src="resource/01.mp4" style="object-fit: fill;"></video>
+        <div id="start1" class="view_mask" style="display:none;">
+            <div id="start1_div" class="start_pos hot_pos" style="left: auto;top: 35%;right: 7%;"></div>
+        </div>
+        <div id="start2" class="view_mask" style="display:none;">
+            <div id="start2_div" class="start_pos hot_pos" style="left: auto;top: 55%;right: 7%;"></div>
+        </div>
+        <div id="first_qa" style="display: none" class="question_pos">
+            <img id="fa_btn" class="answer" data="fa" src="resource/fa.png" style="height: 12%;" /><br>
+            <img id="fb_btn" class="answer" data="fb" src="resource/fb.png" style="height: 12%;" /><br>
+            <img id="fc_btn" class="answer" data="fc" src="resource/fc.png" style="height: 12%;" /><br>
+            <img id="submit_1_btn"  data="submit" src="resource/submit.png" style="margin-top: 4%">
+        </div>
+        <div id="second_qa" style="display: none;top:28%" class="question_pos">
+            <img id="sa_btn" class="answer" data="sa" src="resource/sa.png" style="height: 12%;margin-bottom: 5px;" /><br>
+            <img id="sb_btn" class="answer" data="sb" src="resource/sb.png" style="height: 12%;margin-bottom: 5px;" /><br>
+            <img id="sc_btn" class="answer" data="sc" src="resource/sc.png" style="height: 12%;margin-bottom: 5px;" /><br>
+            <img id="sd_btn" class="answer" data="sd" src="resource/sd.png" style="height: 12%;" /><br>
+            <img id="submit_2_btn"  data="submit" src="resource/submit.png" style="margin-top: 1%;">
+        </div>
+        <div id="third_qa" style="display: none;top:31%;" class="question_pos">
+            <img id="ta_btn" class="answer" data="ta" src="resource/ta.png" style="height: 13%;margin-left: -9%;" /><br>
+            <img id="tb_btn" class="answer" data="tb" src="resource/tb.png" style="height: 25%;margin-left: -2%;" /><br>
+        </div>
+        <div id="book1" class="view_mask" style="display:none;">
+            <div id="ok_1_btn" style="position: absolute;left: 0px;bottom:5px;width: 100%;text-align: center"><img  data="submit" src="resource/ok.png" style="width: 200px"></div>
+        </div>
+        <div id="book2" class="view_mask" style="display:none;">
+            <div id="ok_2_btn" style="position: absolute;left: 0px;bottom:5px;width: 100%;text-align: center"><img  data="submit" src="resource/ok.png" style="width: 200px"></div>
+        </div>
+        <div id="fourth_qa" style="display: none;top:67%" class="question_pos">
+            <img id="right1_btn" class="answer" data="right" src="resource/right.png" style="height: 21%" />
+            <img id="wrong1_btn" class="answer" data="wrong" src="resource/wrong.png" style="height: 21%;margin-left: 87px" />
+        </div>
+        <div id="fifth_qa" style="display: none;top:67%" class="question_pos">
+            <img id="right2_btn" class="answer" data="right" src="resource/right.png" style="height: 21%" />
+            <img id="wrong2_btn" class="answer" data="wrong" src="resource/wrong.png" style="height: 21%;margin-left: 87px" />
+        </div>
+        <div id="sixth_qa" style="display: none;top:67%" class="question_pos">
+            <img id="right3_btn" class="answer" data="right" src="resource/right.png" style="height: 21%" />
+            <img id="wrong3_btn" class="answer" data="wrong" src="resource/wrong.png" style="height: 21%;margin-left: 87px" />
+        </div>
+        <!--<div id="book" class="view_mask" style="display:none;">-->
+            <!--<div id="p1ToP2"  class="page_right hot_pos"></div>-->
+        <!--</div>-->
+    </div>
+
+    <!-- 第三页 -->
+    <div class="box" id="end_page" style="display: none">
+        <div id="waitArea2" style="position: absolute;width: 100%;left: 0px;top: 37%;z-index: 888">
+            <div id="landAlert1" style="display: none">
+                <img src="resource/alert.png" width="200px">
+            </div>
+            <div>
+                <img id="replay_btn" src="resource/start.png" width="150px;" style="margin-top: 50px;">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--<div  id="log"  style="background-color:antiquewhite;position: absolute;left: 0;top: 0;width: 400px;height: 300px;z-index: 2000">-->
+
+</div>
+</body>
+</html>
+<script>
+
+</script>
