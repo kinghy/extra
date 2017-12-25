@@ -29,6 +29,9 @@ $().ready(function () {
         e.preventDefault();
     });
 
+    var lastHeight = 0;
+    var lastWidth = 0;
+
     //视频调整
     resizeStage = function () {
         //调整缩放比
@@ -40,16 +43,18 @@ $().ready(function () {
         var rh = h*scale;
         var newScale = (rh/ 1140).toFixed(2);
         // if(scale!=newScale){
-        if(scale>=newScale+0.05 || scale<=newScale-0.05){
+        // alert(innerWidth+";"+innerHeight)
+        if(scale>=newScale+0.05 || scale<=newScale-0.05 ){
             vp.attr("content","width=device-width,initial-scale=1.0, user-scalable=no,minimal-ui,maximum-scale="+newScale);
-        //
+            // alert(innerWidth+";"+innerHeight+";newScale="+newScale+";scale="+scale)
         }else{
-            var root = $("#root");
-            $("#root").css('transform', "rotate(0deg)");
-            $("body").width(innerWidth)
-            $("body").height(innerHeight)
-            root.width(innerWidth);
-            root.height(innerHeight);
+            // var root = $("#root");
+            // $("#root").css('transform', "rotate(0deg)");
+            // $("body").width(innerWidth)
+            // $("body").height(innerHeight)
+            // // alert("innerWidth="+innerWidth+";innerHeight="+innerHeight)
+            // root.width(innerWidth);
+            // root.height(innerHeight);
             // if (root.height() > root.width()) {
             //     var angle = window.orientation ? window.orientation : screen.orientation.angle;
             //     root.width(innerHeight);

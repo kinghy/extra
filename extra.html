@@ -87,13 +87,14 @@
         $(window).resize(function() {
             setTimeout(function () {
                 checkLand()
-            },300)
+            },500)
 
         });
 
         function checkLand() {
             var w = $(window).width();
             var h = $(window).height();
+//            alert(h+";"+w);
             if(h>w){
                 $("#landAlert,#landAlert1").show();
                 $("#go_btn,#replay_btn").hide().removeClass("btn-ani");
