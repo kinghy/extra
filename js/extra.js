@@ -56,9 +56,9 @@ $().ready(function () {
 
         })
     });
-    var ts = ChoiceStage2.init("fourth_qa",291,300,$("#wrong1_btn"),$("#right1_btn"),301,305.5,306,309,306,309);
-    var fours = ChoiceStage2.init("fifth_qa",310,312,$("#wrong2_btn"),$("#right2_btn"),312.5,318,318.5,322,318.5,322);
-    var fis = ChoiceStage2.init("sixth_qa",323.5,326,$("#wrong3_btn"),$("#right3_btn"),326.5,331.5,332,335.5,331.5,335.5);
+    var ts = ChoiceStage2.init("fourth_qa",291,300,$("#wrong1_btn"),$("#right1_btn"),300.5,305,305.5,309,305.5,309);
+    var fours = ChoiceStage2.init("fifth_qa",310,312,$("#wrong2_btn"),$("#right2_btn"),312.5,318,318.2,322,318.2,322);
+    var fis = ChoiceStage2.init("sixth_qa",323.5,325.5,$("#wrong3_btn"),$("#right3_btn"),326,331.5,331.7,335.5,331.8,335.5);
 
     var es = Stage.init(null,336,0)
 
