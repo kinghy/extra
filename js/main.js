@@ -147,7 +147,7 @@ var SimpleMultiChoiceStage = {
 }
 
 var SimpleMultiChoiceStage2 = {
-    init:function(stageId,startTime,endTime,$submitBtn,$answerBtns,$answerArea,answers,correctedSTime,correctedETime,wrong1STime,wrong1ETime,wrong2STime,wrong2ETime,initCallBack,showCallBack,hideCallBack){
+    init:function(stageId,startTime,endTime,$submitBtn,$answerBtns,$answerArea,answers,correctedSTime,correctedETime,wrong1STime,wrong1ETime,wrong2STime,wrong2ETime,handleCallBack,initCallBack,showCallBack,hideCallBack){
         var cs = ChoiceStage.init(stageId,startTime,endTime,null,null,correctedSTime,correctedETime,wrong1STime,wrong1ETime,wrong2STime,wrong2ETime,initCallBack,showCallBack,hideCallBack);
         $answerBtns.click(function () {
             var $this = $(this);
@@ -186,7 +186,7 @@ var SimpleMultiChoiceStage2 = {
             if(corrects==answers.length){
                 cs.correct(this,stageId,cs,correctedSTime,correctedETime);
             }else{
-                cs.correct(this,stageId,cs,wrong1STime,wrong1ETime);
+                cs.correct(this,stageId,cs,wrong1STime,wrong1ETime,handleCallBack);
             }
 
         });
@@ -312,7 +312,7 @@ var ChoiceStage = {
     init:function(stageId,startTime,endTime,$correctBtns,$wrongBtns,correctedSTime,correctedETime,wrong1STime,wrong1ETime,wrong2STime,wrong2ETime,initCallBack,showCallBack,hideCallBack){
         var s = Stage.init(stageId,startTime,endTime,initCallBack,showCallBack,hideCallBack);
         var ret = {
-            correct : function(btn,thisId,ret,correctStartTime,correctEndTime) {
+            correct : function(btn,thisId,ret,correctStartTime,correctEndTime,handleCallBack) {
                 var $this = $(btn);
                 btn.src = "resource/"+$this.attr("data")+"_highlight.png";
                 setTimeout(function () {
@@ -320,7 +320,11 @@ var ChoiceStage = {
                     s.hide();
                     btn.src = "resource/"+$this.attr("data")+".png";
                     ret.runByTime(correctStartTime,correctEndTime,correctEndTime,function () {
-                        ret.playNext();
+                        if(handleCallBack && typeof(handleCallBack) == "function" ){
+                            handleCallBack(ret)
+                        }else{
+                            ret.playNext();
+                        }
                     })
                 }.bind(this), 500)
             },
@@ -365,10 +369,10 @@ var ChoiceStage = {
 }
 
 var ChoiceStage2 = {
-    init:function(stageId,startTime,endTime,$correctBtns,$wrongBtns,correctedSTime,correctedETime,wrong1STime,wrong1ETime,wrong2STime,wrong2ETime,initCallBack,showCallBack,hideCallBack){
+    init:function(stageId,startTime,endTime,$correctBtns,$wrongBtns,correctedSTime,correctedETime,wrong1STime,wrong1ETime,wrong2STime,wrong2ETime,handleCallBack,initCallBack,showCallBack,hideCallBack){
         var s = Stage.init(stageId,startTime,endTime,initCallBack,showCallBack,hideCallBack);
         var ret = {
-            correct : function(btn,thisId,ret,correctStartTime,correctEndTime) {
+            correct : function(btn,thisId,ret,correctStartTime,correctEndTime,handleCallBack) {
                 var $this = $(btn);
                 btn.src = "resource/"+$this.attr("data")+"_highlight.png";
                 setTimeout(function () {
@@ -376,31 +380,15 @@ var ChoiceStage2 = {
                     s.hide();
                     btn.src = "resource/"+$this.attr("data")+".png";
                     ret.runByTime(correctStartTime,correctEndTime,correctEndTime,function () {
-                        ret.playNext();
+                        if(handleCallBack && typeof(handleCallBack) == "function" ){
+                            handleCallBack(ret)
+                        }else{
+                            ret.playNext();
+                        }
                     })
                 }.bind(this), 500)
             },
-            wrong : function (btn,times,thiId,ret,questionTime,wrong1StartTime,wrong1EndTime,wrong2StartTime,wrong2EndTime) {
-                var $this = $(btn);
-                btn.src = "resource/"+$this.attr("data")+"_highlight.png";
-                setTimeout(function () {
-                    //正确
-                    var video = document.querySelector("video");
-                    if(times<2) {
-                        s.hide();
-                        btn.src = "resource/"+$this.attr("data")+".png"
-                        ret.runByTime(wrong1StartTime,wrong1EndTime,questionTime,function () {
-                            s.show();
-                        })
-                    }else{
-                        s.hide();
-                        btn.src = "resource/"+$this.attr("data")+".png"
-                        ret.runByTime(wrong2StartTime,wrong2EndTime,questionTime,function () {
-                            s.show();
-                        })
-                    }
-                }.bind(this),500)
-            }
+
         }
         ret = $.extend({},s,ret);
         s = ret;
@@ -413,7 +401,7 @@ var ChoiceStage2 = {
 
         if($wrongBtns) {
             $wrongBtns.click(function () {
-                ret.correct(this,stageId,ret,wrong1STime,wrong1ETime);
+                ret.correct(this,stageId,ret,wrong1STime,wrong1ETime,handleCallBack);
             });
         }
 
