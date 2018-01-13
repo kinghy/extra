@@ -66,20 +66,20 @@ $().ready(function () {
     // });
     var bzs = Stage.init("book1",253,282,function (s) {//初始化
         $("#ok_1_btn").click(function (e) {
-            $(this).find("img").attr("src","resource/ok_highlight.png");
+            $(this).find("img").attr("src","resource/remember_highlight.png");
             setTimeout(function () {
                 s.playNext();
-                $(this).find("img").attr("src","resource/ok.png");
+                $(this).find("img").attr("src","resource/remember.png");
             }.bind(this),500)
 
         })
     });
     var bfs = Stage.init("book2",282,291,function (s) {//初始化
         $("#ok_2_btn").click(function (e) {
-            $(this).find("img").attr("src","resource/ok_highlight.png");
+            $(this).find("img").attr("src","resource/remember_highlight.png");
             setTimeout(function () {
                 s.playNext();
-                $(this).find("img").attr("src","resource/ok.png");
+                $(this).find("img").attr("src","resource/remember.png");
             }.bind(this),500)
 
         })
