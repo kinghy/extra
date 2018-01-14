@@ -48,7 +48,7 @@ $().ready(function () {
         });
 
     // var ss = ChoiceStage.init("third_qa",212.5,243.5,$("#tb_btn"),$("#ta_btn"),251.5,263,245,251,245,251);
-    var ss = ChoiceStage2.init("third_qa",212.5,243.5,$("#tb_btn"),$("#ta_btn"),244,249,249.5,252.5,249.5,252.5,function (ret) {
+    var ss = ChoiceStage2.init("third_qa",212.5,244.5,$("#tb_btn"),$("#ta_btn"),245,250,250.5,253.5,250.5,253.5,function (ret) {
         $("#remember_3_btn").show().click(function () {
             $(this).find("img").attr("src","resource/remember_highlight.png");
             setTimeout(function () {
@@ -64,7 +64,7 @@ $().ready(function () {
     //         s.playNext();
     //     })
     // });
-    var bzs = Stage.init("book1",253,282,function (s) {//初始化
+    var bzs = Stage.init("book1",254,283,function (s) {//初始化
         $("#ok_1_btn").click(function (e) {
             $(this).find("img").attr("src","resource/remember_highlight.png");
             setTimeout(function () {
@@ -74,7 +74,7 @@ $().ready(function () {
 
         })
     });
-    var bfs = Stage.init("book2",282,291,function (s) {//初始化
+    var bfs = Stage.init("book2",283,292,function (s) {//初始化
         $("#ok_2_btn").click(function (e) {
             $(this).find("img").attr("src","resource/remember_highlight.png");
             setTimeout(function () {
@@ -84,11 +84,11 @@ $().ready(function () {
 
         })
     });
-    var ts = ChoiceStage2.init("fourth_qa",291,302,$("#wrong1_btn"),$("#right1_btn"),302.2,307,307.5,311,307.5,311);
-    var fours = ChoiceStage2.init("fifth_qa",311.5,314,$("#wrong2_btn"),$("#right2_btn"),314.5,319.5,320,324,320,324);
-    var fis = ChoiceStage2.init("sixth_qa",324.5,327.5,$("#wrong3_btn"),$("#right3_btn"),327.7,333.3,333.5,337.5,333.5,337.5);
+    var ts = ChoiceStage2.init("fourth_qa",292,303,$("#wrong1_btn"),$("#right1_btn"),303.2,308,308.5,312,308.5,312);
+    var fours = ChoiceStage2.init("fifth_qa",312.5,315,$("#wrong2_btn"),$("#right2_btn"),315.5,320.5,321,325,321,325);
+    var fis = ChoiceStage2.init("sixth_qa",325.5,328.5,$("#wrong3_btn"),$("#right3_btn"),328.7,334.3,334.5,338.5,334.5,338.5);
 
-    var es = Stage.init(null,338,0)
+    var es = Stage.init(null,339,0)
 
 
     var sm = VideoStageManager.init("pageWrap","video",[zs,fs,ss,bzs,bfs,ts,fours,fis,es],function () {
