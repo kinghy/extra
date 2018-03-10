@@ -23,7 +23,7 @@ $().ready(function () {
             s.playNext();
         })
     });
-    var zs = SimpleMultiChoiceStage2.init("first_qa",0,135,$("#submit_1_btn"),$("#first_qa .answer"),$("#first_qa"),
+    var zs = SimpleMultiChoiceStage2.init("first_qa",0,135.5,$("#submit_1_btn"),$("#first_qa .answer"),$("#first_qa"),
         ["fa","fb"],136,141,141.5,144.5,141.5,144.5,function (ret) {
             $("#remember_1_btn").show().click(function () {
                 $(this).find("img").attr("src","resource/remember_highlight.png");
